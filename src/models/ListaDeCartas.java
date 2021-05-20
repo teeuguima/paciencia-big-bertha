@@ -23,7 +23,10 @@ public class ListaDeCartas {
    * @return ArrayList<Carta>
    */
   public ArrayList<Carta> subLista(int fromIndex, int toIndex) {
+     System.out.println("sum: "+fromIndex + " sum + i: "+(toIndex+1));
     ArrayList<Carta> subLista = new ArrayList<Carta>(this.cartas.subList(fromIndex, toIndex+1));
+     this.cartas.subList(fromIndex, toIndex+1).clear();
+     System.out.println(cartas.size());
     return subLista;
   }
 
