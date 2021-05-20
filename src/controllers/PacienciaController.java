@@ -74,15 +74,20 @@ public class PacienciaController {
    */
   private int dividirFileiras(){
     int sum = 0;
-    System.out.println(this.fileiras.length);
+    int qtd = 5;
+    //System.out.println(this.fileiras.length);
     for(int i = 0; i < 15; i++){
-      System.out.println("Sum: "+sum);
-      ArrayList<Carta> subLista = this.baralho.subLista(sum, sum + i);
-      subLista.get(i).mostrarCarta();
+      
+      ArrayList<Carta> subLista = this.baralho.subLista(sum, sum + 5);
+      for(int j=0; j < subLista.size(); j++){
+          subLista.get(j).mostrarCarta();
+      }
+      
       this.fileiras[i] = new Fileira(subLista);
-      int qtd = i + 1;
-        System.out.println("Qtd: "+qtd);
-      sum = qtd;
+      
+      //  System.out.println("Qtd: "+qtd);
+      sum = qtd+(i+1);
+      //System.out.println(sum);
     }
     maiorFileira = 15;
     return sum;
@@ -93,7 +98,9 @@ public class PacienciaController {
    * @param fromIndex
    */
   private void gerarRemanecente(int fromIndex){
+      
     ArrayList<Carta> restoDoBaralho = this.baralho.subLista(fromIndex, this.baralho.length() -1);
+     
     this.remanecente = new Remanecente(restoDoBaralho);
   }
 
