@@ -57,8 +57,9 @@ public class PacienciaController {
 
 
   public void separarCartas(){
-    int somaDeCartasDasFileiras = dividirFileiras();
-    gerarRemanecente(somaDeCartasDasFileiras);
+     int i = 0;
+    dividirFileiras();
+    gerarRemanecente(i);
   }
 
   public void esconderTodasAsCartas(){
@@ -78,7 +79,7 @@ public class PacienciaController {
     //System.out.println(this.fileiras.length);
     for(int i = 0; i < 15; i++){
       
-      ArrayList<Carta> subLista = this.baralho.subLista(sum, sum + 5);
+      ArrayList<Carta> subLista = this.baralho.subLista(0, 5);
       for(int j=0; j < subLista.size(); j++){
           subLista.get(j).mostrarCarta();
       }
@@ -98,8 +99,10 @@ public class PacienciaController {
    * @param fromIndex
    */
   private void gerarRemanecente(int fromIndex){
-      
-    ArrayList<Carta> restoDoBaralho = this.baralho.subLista(fromIndex, this.baralho.length() -1);
+      System.out.println(fromIndex);
+    ArrayList<Carta> restoDoBaralho = this.baralho.subLista(0, this.baralho.length() -1);
+      System.out.println(this.baralho.length());
+      System.out.println(restoDoBaralho.size());
      
     this.remanecente = new Remanecente(restoDoBaralho);
   }
@@ -128,11 +131,11 @@ public class PacienciaController {
    * @throws MovimentoInvalidoException
    */
   public void moveUma(Carta aMover, int destino) throws MovimentoInvalidoException{
-    if(destino >= 0 && destino <= 6){
+    if(destino >= 0 && destino <= 14){
       fileiras[destino].addUma(aMover);
       maiorFileira = calculaMaiorFileira();
-    }else if(destino >= 7 && destino <= 10){
-      fundacoes[destino - 7].inserirCarta(aMover);
+    }else if(destino >= 16 && destino <= 24){
+      fundacoes[destino - 16].inserirCarta(aMover);
     }
   }
 
@@ -143,7 +146,7 @@ public class PacienciaController {
    * @throws MovimentoInvalidoException
    */
   public void moveVarias(ArrayList<Carta> cartas, int destino) throws MovimentoInvalidoException{
-    if(destino >= 0 && destino <= 6){
+    if(destino >= 0 && destino <= 14){
       fileiras[destino].addVarias(cartas);
       maiorFileira = calculaMaiorFileira();
     }

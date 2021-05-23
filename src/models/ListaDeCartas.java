@@ -23,10 +23,26 @@ public class ListaDeCartas {
    * @return ArrayList<Carta>
    */
   public ArrayList<Carta> subLista(int fromIndex, int toIndex) {
-     System.out.println("sum: "+fromIndex + " sum + i: "+(toIndex+1));
-    ArrayList<Carta> subLista = new ArrayList<Carta>(this.cartas.subList(fromIndex, toIndex+1));
-     this.cartas.subList(fromIndex, toIndex+1).clear();
-     System.out.println(cartas.size());
+    int size = this.cartas.size();
+      System.out.println(size);
+      System.out.println(fromIndex+ " " + " "+ toIndex);
+      //System.out.println("sum: "+fromIndex + " sum + i: "+(toIndex+1));
+    ArrayList<Carta> subLista = new ArrayList<Carta>();
+    if(size > 14){
+        subLista.addAll(this.cartas.subList(fromIndex, toIndex+1));
+        this.cartas.subList(fromIndex, toIndex+1).clear();
+    }else if(size==14){
+        subLista.addAll(this.cartas.subList(fromIndex, toIndex+1));
+    }
+    
+    //System.out.println("Tenho: "+cartas.size());
+    //  System.out.println(this.cartas.get(25));
+    
+    //System.out.println("entrou");
+    
+
+     
+    System.out.println("Fiquei com: "+cartas.size());
     return subLista;
   }
 
